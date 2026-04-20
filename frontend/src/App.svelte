@@ -163,7 +163,7 @@
             {:else}
               <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {#each books as book}
-                  <button on:click={() => openBook(book.id)} class="text-left group card border border-slate-200 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-colors">
+                  <button on:click={() => openBook(book.id)} class="text-left group bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all dark:bg-slate-800 dark:border-slate-700 border border-slate-200 hover:border-indigo-500 dark:hover:border-indigo-500 transition-colors">
                     <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">{book.title}</h3>
                     <p class="text-slate-500 dark:text-slate-400 mt-2">{book.author || 'Anonim'}</p>
                   </button>
