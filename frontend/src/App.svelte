@@ -4,15 +4,15 @@
   const API_URL = "http://localhost:3000";
   
   let currentView = 'home'; // home, detail, reader
-  let books = [];
-  let currentBookId = null;
-  let currentBook = null;
-  let chapters = [];
-  let currentChapter = null;
-  let chapterContents = [];
+  let books: any[] = [];
+  let currentBookId: number | null = null;
+  let currentBook: any = null;
+  let chapters: any[] = [];
+  let currentChapter: any = null;
+  let chapterContents: any[] = [];
   
   let searchQuery = '';
-  let searchResults = [];
+  let searchResults: any[] = [];
   let isSearching = false;
 
   async function fetchBooks() {
