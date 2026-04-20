@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased m-0 p-0 dark:bg-[#0f172a] dark:text-slate-200;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-all active:scale-95;
+  }
+  .card {
+    @apply bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow dark:bg-slate-800 dark:border-slate-700;
+  }
+}
+
+.arabic-text {
+  font-family: 'Amiri', 'Scheherazade New', 'Lateef', 'Traditional Arabic', serif;
+  font-size: 2rem;
+  line-height: 1.8;
+  text-align: right;
+  direction: rtl;
+}
