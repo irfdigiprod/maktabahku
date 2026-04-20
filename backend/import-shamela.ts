@@ -1,7 +1,5 @@
 import mysql from "mysql2/promise";
-import fs from "fs";
-import path from "path";
-import { downloadBook, getBook } from "shamela";
+import { getBook } from "shamela";
 
 // Ensure environment variables are loaded if necessary
 // requires SHAMELA_API_KEY and SHAMELA_API_BOOKS_ENDPOINT in older library versions
@@ -19,19 +17,12 @@ async function doImport() {
 
   try {
     const bookId = 11;
-    const outputPath = path.join(__dirname, `book_${bookId}.sqlite`);
     
-    console.log(`Downloading book ${bookId} from Shamela API...`);
-    await downloadBook(bookId, { outputFile: { path: outputPath } });
+    console.log(`Downloading and parsing book ${bookId} from Shamela API...`);
+    const bookData = await getBook(bookId);
     
-    console.log(`Reading ${outputPath}...`);
-    const fileBytes = fs.readFileSync(outputPath);
-    
-    console.log(`Parsing book ${bookId}...`);
-    const bookData = await getBook(fileBytes);
-    
-    const pages = bookData.getPages();
-    const titles = bookData.getToc();
+    const pages = bookData.pages;
+    const titles = bookData.titles;
 
     console.log(`Book ${bookId}: ${pages.length} pages, ${titles.length} TOC entries.`);
 
@@ -78,7 +69,7 @@ async function doImport() {
       let chapterId = titles[0]?.id || 1;
       // Reverse find the nearest title
       for (let j = titles.length - 1; j >= 0; j--) {
-        if (p.page >= titles[j].page) {
+        if ((p.page ?? 0) >= (titles[j].page ?? 0)) {
           chapterId = titles[j].id;
           break;
         }
